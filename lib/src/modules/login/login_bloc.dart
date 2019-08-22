@@ -68,7 +68,7 @@ class LoginProvider extends Login {
         return false;
       }
 
-      _appBloc.userController.add(user);
+      _appBloc.setUser(user);
       _stateController.add(LoginState.SUCCESS);
       return true;
     } catch (ex) {

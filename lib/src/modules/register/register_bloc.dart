@@ -71,7 +71,7 @@ class RegisterProvider extends Register {
         password: _passwordController.value,
       );
 
-      _appBloc.userController.add(user);
+      _appBloc.setUser(user);
       _stateController.add(RegisterState.SUCCESS);
       return true;
     } catch (ex) {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:slidy_provider/src/shared/widgets/fields/stream_input_field.dart';
 
+import '../../../src/shared/widgets/components/side_drawer.dart';
 import '../../shared/models/message/message_model.dart';
-import '../../shared/widgets/stream_input_field.dart';
 import 'home_bloc.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,8 +17,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final _bloc = Provider.of<HomeProvider>(context);
-    _bloc.listenMessage();
+    _bloc.loadMessages();
     return Scaffold(
+      drawer: SideDrawer(),
       appBar: AppBar(
         title: Text("Home"),
       ),

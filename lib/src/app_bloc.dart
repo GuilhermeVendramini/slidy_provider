@@ -1,26 +1,25 @@
 import 'package:flutter/foundation.dart';
-import 'package:rxdart/subjects.dart';
 
 import 'shared/models/user/user_model.dart';
 
 class AppBloc with ChangeNotifier {
-  BehaviorSubject<UserModel> userController = BehaviorSubject<UserModel>();
-
-  @override
-  void dispose() {
-    userController.close();
-    super.dispose();
-  }
+  UserModel _userController;
 }
 
 class App extends AppBloc {
-  /**
-   * Bloc output functions here
-   **/
+  UserModel get getUser {
+    return _userController;
+  }
 }
 
 class AppProvider extends App {
-  /**
-   * Bloc actions functions here
-   **/
+  void cleanUser() {
+    _userController = null;
+    notifyListeners();
+  }
+
+  void setUser(UserModel user) {
+    _userController = user;
+    notifyListeners();
+  }
 }

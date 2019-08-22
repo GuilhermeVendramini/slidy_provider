@@ -14,12 +14,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: StreamBuilder(
-        stream: _bloc.userController,
-        builder: (context, snapshot) {
-          return snapshot.hasData ? HomeModule() : LoginModule();
-        },
-      ),
+      home: _bloc.getUser != null ? HomeModule() : LoginModule(),
     );
   }
 }

@@ -12,7 +12,7 @@ class StreamInputField extends StatelessWidget {
       this.obscure = false,
       @required this.stream,
       @required this.onChanged,
-      @required this.controller});
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
