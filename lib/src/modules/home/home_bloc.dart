@@ -10,7 +10,7 @@ class HomeBloc extends ChangeNotifier with HomeValidators {
   final HasuraMessageRepository _messageRepository;
   final AppProvider _appBloc;
 
-  HomeBloc(this._messageRepository, this._appBloc);
+  HomeBloc(this._appBloc) : _messageRepository = HasuraMessageRepository();
 
   BehaviorSubject<String> _messageController = BehaviorSubject<String>();
   BehaviorSubject<List<MessageModel>> messagesController =
@@ -26,8 +26,7 @@ class HomeBloc extends ChangeNotifier with HomeValidators {
 }
 
 class Home extends HomeBloc {
-  Home(HasuraMessageRepository messageRepository, AppBloc appBloc)
-      : super(messageRepository, appBloc);
+  Home(AppBloc appBloc) : super(appBloc);
 
   Stream<String> get streamMessage =>
       _messageController.stream.transform(validateMessage);
@@ -38,8 +37,7 @@ class Home extends HomeBloc {
 }
 
 class HomeProvider extends Home {
-  HomeProvider(HasuraMessageRepository messageRepository, AppBloc appBloc)
-      : super(messageRepository, appBloc);
+  HomeProvider(AppBloc appBloc) : super(appBloc);
 
   void sendMessage() {
     if (_messageController.value != null) {
